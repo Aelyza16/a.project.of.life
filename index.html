@@ -1,15 +1,14 @@
+# Replace Your Entire `index.html` With This
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>PROJECT LEPIDOPTERA</title>
 
 <style>
-/* =========================
-   GENERAL
-========================= */
 
 *{
     margin:0;
@@ -19,97 +18,224 @@
 
 body{
     background:#050505;
-    color:#e8e8e8;
+    color:#f0f0f0;
     font-family:Consolas, monospace;
-    overflow-x:hidden;
-    min-height:100vh;
-    cursor:crosshair;
+    overflow:hidden;
 }
 
 /* =========================
-   BACKGROUND
+   PASSWORD SCREEN
 ========================= */
 
-.background{
+#loginScreen{
     position:fixed;
     width:100%;
-    height:100%;
-    top:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:
+    radial-gradient(circle at center, #111122 0%, #050505 70%);
+    z-index:999;
+}
+
+.login-box{
+    text-align:center;
+    padding:40px;
+    border:1px solid rgba(255,255,255,0.15);
+    background:rgba(255,255,255,0.03);
+    backdrop-filter:blur(5px);
+    width:90%;
+    max-width:500px;
+    box-shadow:0 0 30px rgba(138,125,255,0.15);
+}
+
+.login-box h1{
+    font-size:2rem;
+    letter-spacing:4px;
+    margin-bottom:15px;
+    color:#ffffff;
+}
+
+.login-box p{
+    color:#aaaaaa;
+    margin-bottom:30px;
+    line-height:1.6;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    background:black;
+    border:1px solid #444;
+    color:white;
+    font-family:Consolas, monospace;
+    margin-bottom:15px;
+    outline:none;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    background:#8a7dff;
+    color:black;
+    cursor:pointer;
+    font-family:Consolas, monospace;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+#error{
+    margin-top:15px;
+    color:#ff5c5c;
+    opacity:0;
+    transition:0.4s;
+}
+
+/* =========================
+   BUTTERFLY
+========================= */
+
+.butterfly-container{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.butterfly{
+    position:relative;
+    width:80px;
+    height:60px;
+    animation:float 4s ease-in-out infinite;
+}
+
+.wing{
+    position:absolute;
+    width:40px;
+    height:60px;
+    background:linear-gradient(to bottom, #9b8cff, #473f9c);
+    border-radius:50%;
+    opacity:0.9;
+}
+
+.left-wing{
     left:0;
-    overflow:hidden;
-    z-index:-2;
+    transform-origin:right center;
+    animation:flapLeft 1.5s ease-in-out infinite;
+}
+
+.right-wing{
+    right:0;
+    transform-origin:left center;
+    animation:flapRight 1.5s ease-in-out infinite;
+}
+
+.body{
+    position:absolute;
+    left:50%;
+    top:8px;
+    transform:translateX(-50%);
+    width:8px;
+    height:45px;
+    background:#111;
+    border-radius:20px;
+}
+
+@keyframes flapLeft{
+    0%,100%{
+        transform:rotateY(0deg) rotate(-8deg);
+    }
+
+    50%{
+        transform:rotateY(70deg) rotate(-15deg);
+    }
+}
+
+@keyframes flapRight{
+    0%,100%{
+        transform:rotateY(0deg) rotate(8deg);
+    }
+
+    50%{
+        transform:rotateY(-70deg) rotate(15deg);
+    }
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+/* =========================
+   MAIN WEBSITE
+========================= */
+
+#mainWebsite{
+    display:none;
+    width:100%;
+    height:100vh;
+    overflow-y:auto;
+    padding:80px 20px;
     background:
     radial-gradient(circle at center, #101020 0%, #050505 70%);
 }
 
-.noise{
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    opacity:0.05;
-    z-index:-1;
-    background-image:url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
-}
-
-/* =========================
-   BUTTERFLIES
-========================= */
-
-.butterfly{
-    position:absolute;
-    color:#8a7dff;
-    font-size:24px;
-    animation:float linear infinite;
-    opacity:0.2;
-    user-select:none;
-}
-
-@keyframes float{
-    from{
-        transform:translateY(110vh) translateX(0px) rotate(0deg);
-    }
-
-    to{
-        transform:translateY(-120vh) translateX(100px) rotate(360deg);
-    }
-}
-
-/* =========================
-   MAIN CONTAINER
-========================= */
-
 .container{
     width:90%;
-    max-width:1000px;
+    max-width:900px;
     margin:auto;
-    padding-top:100px;
-    padding-bottom:100px;
 }
 
-/* =========================
-   HEADER
-========================= */
-
-.header{
+.hero{
     text-align:center;
-    margin-bottom:70px;
+    margin-bottom:80px;
 }
 
-.header h1{
+.hero h1{
     font-size:4rem;
-    letter-spacing:8px;
+    letter-spacing:5px;
+    margin-bottom:30px;
     color:#ffffff;
-    text-shadow:0 0 20px #8a7dff;
+    text-shadow:0 0 20px rgba(138,125,255,0.4);
     animation:flicker 5s infinite;
 }
 
-.header p{
-    margin-top:20px;
-    color:#9f9f9f;
-    font-size:1rem;
-    letter-spacing:2px;
+.hero p{
+    font-size:1.1rem;
+    color:#d0d0d0;
+    line-height:2;
+    margin-bottom:30px;
+}
+
+.quote-box{
+    border-left:3px solid #8a7dff;
+    background:rgba(255,255,255,0.03);
+    padding:30px;
+    margin-bottom:30px;
+    line-height:2;
+    transition:0.3s;
+}
+
+.quote-box:hover{
+    background:rgba(138,125,255,0.08);
+    transform:translateX(5px);
+}
+
+.footer{
+    text-align:center;
+    color:#666;
+    margin-top:80px;
+    font-size:0.8rem;
 }
 
 @keyframes flicker{
@@ -118,333 +244,142 @@ body{
     }
 
     20%,24%,55%{
-        opacity:0.4;
+        opacity:0.5;
     }
 }
 
-/* =========================
-   WARNING BOX
-========================= */
-
-.warning{
-    border:1px solid #7d0000;
-    padding:25px;
-    background:rgba(80,0,0,0.1);
-    margin-bottom:40px;
-    box-shadow:0 0 20px rgba(255,0,0,0.1);
-}
-
-.warning h2{
-    color:#ff4d4d;
-    margin-bottom:10px;
-}
-
-/* =========================
-   LOGS
-========================= */
-
-.log{
-    border-left:3px solid #8a7dff;
-    padding:20px;
-    margin-bottom:25px;
-    background:rgba(255,255,255,0.03);
-    transition:0.3s;
-}
-
-.log:hover{
-    background:rgba(138,125,255,0.08);
-    transform:translateX(5px);
-}
-
-.log-title{
-    color:#b5abff;
-    margin-bottom:10px;
-    font-size:1.1rem;
-}
-
-.log-date{
-    color:#777;
-    font-size:0.8rem;
-    margin-bottom:10px;
-}
-
-/* =========================
-   BUTTON
-========================= */
-
-button{
-    background:black;
-    color:#e8e8e8;
-    border:1px solid #666;
-    padding:12px 20px;
-    margin-top:20px;
-    cursor:pointer;
-    transition:0.3s;
-    font-family:Consolas, monospace;
-}
-
-button:hover{
-    background:#8a7dff;
-    color:black;
-    border-color:#8a7dff;
-}
-
-/* =========================
-   SECRET MESSAGE
-========================= */
-
-#secret{
-    margin-top:30px;
-    color:#ff4d4d;
-    opacity:0;
-    transition:1s;
-    letter-spacing:3px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer{
-    margin-top:100px;
-    text-align:center;
-    color:#555;
-    font-size:0.8rem;
-}
-
-/* =========================
-   GLITCH
-========================= */
-
-.glitch{
-    position:relative;
-    display:inline-block;
-}
-
-.glitch::before,
-.glitch::after{
-    content:attr(data-text);
-    position:absolute;
-    left:0;
-    width:100%;
-    overflow:hidden;
-}
-
-.glitch::before{
-    animation:glitch1 2s infinite;
-    color:red;
-    z-index:-1;
-}
-
-.glitch::after{
-    animation:glitch2 2s infinite;
-    color:blue;
-    z-index:-2;
-}
-
-@keyframes glitch1{
-    0%{clip-path:inset(0 0 80% 0);}
-    20%{clip-path:inset(20% 0 30% 0);}
-    40%{clip-path:inset(50% 0 10% 0);}
-    60%{clip-path:inset(10% 0 60% 0);}
-    80%{clip-path:inset(80% 0 5% 0);}
-    100%{clip-path:inset(0 0 80% 0);}
-}
-
-@keyframes glitch2{
-    0%{clip-path:inset(80% 0 0 0);}
-    20%{clip-path:inset(30% 0 20% 0);}
-    40%{clip-path:inset(10% 0 50% 0);}
-    60%{clip-path:inset(60% 0 10% 0);}
-    80%{clip-path:inset(5% 0 80% 0);}
-    100%{clip-path:inset(80% 0 0 0);}
-}
 </style>
 </head>
 
 <body>
 
-<div class="background"></div>
-<div class="noise"></div>
+<!-- PASSWORD SCREEN -->
+<div id="loginScreen">
 
-<!-- FLOATING BUTTERFLIES -->
-<div class="butterfly" style="left:10%; animation-duration:18s;">🦋</div>
-<div class="butterfly" style="left:30%; animation-duration:22s;">🦋</div>
-<div class="butterfly" style="left:50%; animation-duration:17s;">🦋</div>
-<div class="butterfly" style="left:70%; animation-duration:25s;">🦋</div>
-<div class="butterfly" style="left:85%; animation-duration:19s;">🦋</div>
+    <div class="login-box">
 
-<div class="container">
-
-    <!-- HEADER -->
-    <div class="header">
-        <h1 class="glitch" data-text="PROJECT LEPIDOPTERA">
-            PROJECT LEPIDOPTERA
-        </h1>
+        <h1>ACCESS REQUIRED</h1>
 
         <p>
-            "Do not follow the butterflies after sunset."
+            Enter the designated keyword to continue.
         </p>
-    </div>
 
-    <!-- WARNING -->
-    <div class="warning">
-        <h2>WARNING</h2>
+        <input type="password" id="passwordInput" placeholder="Enter Password...">
 
-        <p>
-            Unauthorized access to Observation Archive 03 is prohibited.
-            Several visitors reported auditory hallucinations after prolonged exposure.
-        </p>
-    </div>
+        <button onclick="checkPassword()">
+            ENTER
+        </button>
 
-    <!-- LOGS -->
-    <div class="log">
-        <div class="log-title">
-            Observation Log #001
+        <div id="error">
+            Incorrect Password.
         </div>
 
-        <div class="log-date">
-            08.14.2004
+        <!-- BUTTERFLY -->
+        <div class="butterfly-container">
+            <div class="butterfly">
+                <div class="wing left-wing"></div>
+                <div class="wing right-wing"></div>
+                <div class="body"></div>
+            </div>
         </div>
 
-        <p>
-            The first butterfly appeared near the abandoned radio tower.
-            Witnesses claim it emitted light despite having burned wings.
-        </p>
     </div>
 
-    <div class="log">
-        <div class="log-title">
-            Observation Log #006
+</div>
+
+<!-- MAIN WEBSITE -->
+<div id="mainWebsite">
+
+    <div class="container">
+
+        <div class="hero">
+            <h1>THE PROJECTION WORLD IS THE TRUTH</h1>
         </div>
 
-        <div class="log-date">
-            08.21.2004
+        <div class="quote-box">
+            <p>
+                "Everything stored there is what its supposed to be, and whatever left is there the truth of Self-Hatred and the one whom ever be open toward anyone, even her own siblings sadly."
+            </p>
         </div>
 
-        <p>
-            Subjects exposed to the swarm began repeating identical phrases:
-            "It remembers us."
-        </p>
-    </div>
-
-    <div class="log">
-        <div class="log-title">
-            Observation Log #013
+        <div class="quote-box">
+            <p>
+                "But by then, who can even understand her truly? all she is doing and her reasoning is mostly justified, then what are we supposed to do?"
+            </p>
         </div>
 
-        <div class="log-date">
-            09.02.2004
+        <div class="footer">
+            ARCHIVE STATUS // ACTIVE
         </div>
 
-        <p>
-            The butterfly specimens disappear from containers between
-            03:11 AM and 03:17 AM.
-        </p>
-    </div>
-
-    <!-- SECRET BUTTON -->
-    <button onclick="revealSecret()">
-        ACCESS RESTRICTED FILE
-    </button>
-
-    <div id="secret">
-        SUBJECT STATUS: UNCONTAINED
-        <br><br>
-        COORDINATE FRAGMENT:
-        48° 51' __" N
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-        PROJECT LEPIDOPTERA © 2004
-        <br>
-        ARCHIVE NODE // STATUS: ACTIVE
     </div>
 
 </div>
 
 <script>
 
-/* =========================
-   SECRET MESSAGE
-========================= */
+function checkPassword(){
 
-function revealSecret(){
+    const password = document.getElementById("passwordInput").value;
 
-    const secret = document.getElementById("secret");
+    if(password === "Love"){
 
-    secret.style.opacity = "1";
+        document.getElementById("loginScreen").style.display = "none";
 
-    document.body.style.animation = "shake 0.5s";
+        document.getElementById("mainWebsite").style.display = "block";
 
-    setTimeout(()=>{
-        document.body.style.animation = "";
-    },500);
+        document.body.style.overflow = "auto";
 
-}
-
-/* =========================
-   RANDOM GLITCH TEXT
-========================= */
-
-const messages = [
-    "it sees you",
-    "don't trust the lights",
-    "the swarm is listening",
-    "you were followed",
-    "open the hidden page",
-    "subject escaped"
-];
-
-setInterval(()=>{
-
-    const random = messages[Math.floor(Math.random()*messages.length)];
-
-    console.log(random);
-
-},3000);
-
-/* =========================
-   PAGE FLICKER
-========================= */
-
-setInterval(()=>{
-
-    if(Math.random() > 0.93){
-
-        document.body.style.opacity = "0.92";
-
-        setTimeout(()=>{
-            document.body.style.opacity = "1";
-        },100);
     }
 
-},500);
+    else{
 
-/* =========================
-   SHAKE EFFECT
-========================= */
+        const error = document.getElementById("error");
 
-const style = document.createElement('style');
+        error.style.opacity = "1";
 
-style.innerHTML = `
-@keyframes shake{
-    0%{transform:translate(0px);}
-    25%{transform:translate(2px,-2px);}
-    50%{transform:translate(-2px,2px);}
-    75%{transform:translate(2px,2px);}
-    100%{transform:translate(0px);}
+        setTimeout(()=>{
+            error.style.opacity = "0";
+        },2000);
+
+    }
+
 }
-`;
 
-document.head.appendChild(style);
+// ENTER KEY SUPPORT
+
+document.getElementById("passwordInput")
+.addEventListener("keypress", function(event){
+
+    if(event.key === "Enter"){
+        checkPassword();
+    }
+
+});
 
 </script>
 
-<!--
-VGhlIGJ1dHRlcmZsaWVzIGFyZSBub3Qgd2hhdCB0aGV5IHNlZW0u
--->
-
 </body>
 </html>
+```
+
+Then:
+
+1. Open your repository
+2. Open `index.html`
+3. Press the pencil icon ✏️
+4. Delete everything
+5. Paste this entire code
+6. Press `Commit changes`
+
+Now your website will:
+
+* open with a password gate
+* show a smooth animated butterfly
+* only open if the password is:
+
+```txt
+Love
+```
+
+* then reveal your ARG homepage lore.
