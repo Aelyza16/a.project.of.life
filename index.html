@@ -100,6 +100,19 @@ button:hover{
 }
 
 /* =========================
+   ZINNIA MESSAGE
+========================= */
+
+#zinniaMessage{
+    margin-top:20px;
+    color:#c6bcff;
+    opacity:0;
+    transition:1s;
+    letter-spacing:4px;
+    font-size:0.9rem;
+}
+
+/* =========================
    BUTTERFLY
 ========================= */
 
@@ -115,6 +128,7 @@ button:hover{
     width:80px;
     height:60px;
     animation:float 4s ease-in-out infinite;
+    cursor:pointer;
 }
 
 .wing{
@@ -211,6 +225,7 @@ button:hover{
     color:#ffffff;
     text-shadow:0 0 20px rgba(138,125,255,0.4);
     animation:flicker 5s infinite;
+    transition:0.3s;
 }
 
 .quote-box{
@@ -271,6 +286,11 @@ button:hover{
 
 <body>
 
+<!-- MUSIC -->
+<audio id="bgAudio" autoplay loop>
+    <source src="musicbox.mp3" type="audio/mpeg">
+</audio>
+
 <!-- PASSWORD SCREEN -->
 <div id="loginScreen">
 
@@ -296,10 +316,14 @@ button:hover{
             Incorrect Password.
         </div>
 
+        <div id="zinniaMessage">
+            Zinnia
+        </div>
+
         <!-- BUTTERFLY -->
         <div class="butterfly-container">
 
-            <div class="butterfly">
+            <div class="butterfly" onclick="butterflySecret()">
 
                 <div class="wing left-wing"></div>
 
@@ -322,7 +346,7 @@ button:hover{
 
         <div class="hero">
 
-            <h1>
+            <h1 id="mainTitle">
                 THE PROJECTION WORLD<br>
                 IS THE TRUTH
             </h1>
@@ -361,6 +385,15 @@ button:hover{
 <script>
 
 /* =========================
+   AUDIO
+========================= */
+
+const audio =
+document.getElementById("bgAudio");
+
+audio.volume = 0.08;
+
+/* =========================
    PASSWORD CHECK
 ========================= */
 
@@ -378,6 +411,8 @@ function checkPassword(){
         .style.display = "block";
 
         document.body.style.overflow = "auto";
+
+        audio.play();
 
     }
 
@@ -413,6 +448,79 @@ document
     }
 
 });
+
+/* =========================
+   BUTTERFLY SECRET
+========================= */
+
+function butterflySecret(){
+
+    const msg =
+    document.getElementById("zinniaMessage");
+
+    msg.style.opacity = "1";
+
+    setTimeout(()=>{
+
+        msg.style.opacity = "0";
+
+    },2000);
+
+}
+
+/* =========================
+   GLITCH EVENT
+========================= */
+
+setInterval(()=>{
+
+    const title =
+    document.getElementById("mainTitle");
+
+    title.innerHTML =
+    "SHE NEVER WANTED THIS END";
+
+    createGlassShatter();
+
+    setTimeout(()=>{
+
+        title.innerHTML =
+        "THE PROJECTION WORLD<br>IS THE TRUTH";
+
+    },1800);
+
+},30000);
+
+/* =========================
+   GLASS SHATTER EFFECT
+========================= */
+
+function createGlassShatter(){
+
+    const shatter =
+    document.createElement("div");
+
+    shatter.style.position = "fixed";
+    shatter.style.top = "0";
+    shatter.style.left = "0";
+    shatter.style.width = "100%";
+    shatter.style.height = "100%";
+    shatter.style.pointerEvents = "none";
+    shatter.style.zIndex = "9999";
+    shatter.style.opacity = "0.75";
+
+    shatter.style.background =
+    "url('glass.png') center/cover no-repeat";
+
+    document.body.appendChild(shatter);
+
+    setTimeout(()=>{
+
+        shatter.remove();
+
+    },1200);
+
+}
 
 </script>
 
