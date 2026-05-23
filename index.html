@@ -721,31 +721,98 @@ document.getElementById("secretLogin")
 }
 
 /* =========================
-   SECRET PASSWORD
+   PURPLE BUTTERFLY MORSE
 ========================= */
 
-function checkSecretPassword(){
+const purpleButterfly =
+document.querySelector(".butterfly");
 
-const pass =
-document.getElementById("secretPassword").value;
+/*
+DEATH in Morse Code
 
-if(pass === "SOUL DRAINING"){
+D = -..
+E = .
+A = .-
+T = -
+H = ....
+*/
 
-document.getElementById("mainWebsite")
-.style.display = "none";
+const morseSequence = [
 
-document.getElementById("secretLogin")
-.style.display = "none";
+/* D (-..) */
+600,180,180,
 
-document.getElementById("secretPage")
-.style.display = "block";
+500,
 
-window.scrollTo(0,0);
+/* E (.) */
+180,
+
+500,
+
+/* A (.-) */
+180,600,
+
+500,
+
+/* T (-) */
+600,
+
+500,
+
+/* H (....) */
+180,180,180,180
+
+];
+
+/* =========================
+   FLASH EFFECT
+========================= */
+
+function flashPurple(duration){
+
+purpleButterfly.style.filter =
+"brightness(3) drop-shadow(0 0 18px #9b8cff)";
+
+setTimeout(()=>{
+
+purpleButterfly.style.filter =
+"none";
+
+},duration);
 
 }
 
+/* =========================
+   PLAY MORSE
+========================= */
+
+function playDeathMorse(){
+
+let delay = 0;
+
+morseSequence.forEach((duration)=>{
+
+setTimeout(()=>{
+
+flashPurple(duration);
+
+},delay);
+
+delay += duration + 180;
+
+});
+
 }
 
+/* =========================
+   REPEAT EVERY 30s
+========================= */
+
+setInterval(()=>{
+
+playDeathMorse();
+
+},30000);
 </script>
 
 </body>
