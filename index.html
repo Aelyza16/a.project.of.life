@@ -1,14 +1,17 @@
-# Replace Your Entire `index.html` With This
-
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PROJECT LEPIDOPTERA</title>
+
+<title>THE KEY TO EQUANIMITY</title>
 
 <style>
+
+/* =========================
+   GENERAL
+========================= */
 
 *{
     margin:0;
@@ -183,7 +186,7 @@ button:hover{
 #mainWebsite{
     display:none;
     width:100%;
-    height:100vh;
+    min-height:100vh;
     overflow-y:auto;
     padding:80px 20px;
     background:
@@ -210,13 +213,6 @@ button:hover{
     animation:flicker 5s infinite;
 }
 
-.hero p{
-    font-size:1.1rem;
-    color:#d0d0d0;
-    line-height:2;
-    margin-bottom:30px;
-}
-
 .quote-box{
     border-left:3px solid #8a7dff;
     background:rgba(255,255,255,0.03);
@@ -229,6 +225,11 @@ button:hover{
 .quote-box:hover{
     background:rgba(138,125,255,0.08);
     transform:translateX(5px);
+}
+
+.quote-box p{
+    font-size:1.1rem;
+    color:#f0f0f0;
 }
 
 .footer{
@@ -248,6 +249,23 @@ button:hover{
     }
 }
 
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:2.2rem;
+        line-height:1.4;
+    }
+
+    .quote-box p{
+        font-size:0.95rem;
+    }
+
+}
+
 </style>
 </head>
 
@@ -264,7 +282,11 @@ button:hover{
             Enter the designated keyword to continue.
         </p>
 
-        <input type="password" id="passwordInput" placeholder="Enter Password...">
+        <input
+            type="password"
+            id="passwordInput"
+            placeholder="Enter Password..."
+        >
 
         <button onclick="checkPassword()">
             ENTER
@@ -276,11 +298,17 @@ button:hover{
 
         <!-- BUTTERFLY -->
         <div class="butterfly-container">
+
             <div class="butterfly">
+
                 <div class="wing left-wing"></div>
+
                 <div class="wing right-wing"></div>
+
                 <div class="body"></div>
+
             </div>
+
         </div>
 
     </div>
@@ -293,19 +321,33 @@ button:hover{
     <div class="container">
 
         <div class="hero">
-            <h1>THE PROJECTION WORLD IS THE TRUTH</h1>
+
+            <h1>
+                THE PROJECTION WORLD<br>
+                IS THE TRUTH
+            </h1>
+
         </div>
 
         <div class="quote-box">
+
             <p>
-                "Everything stored there is what its supposed to be, and whatever left is there the truth of Self-Hatred and the one whom ever be open toward anyone, even her own siblings sadly."
+                "Everything stored there is what its supposed to be,
+                and whatever left is there the truth of Self-Hatred
+                and the one whom ever be open toward anyone,
+                even her own siblings sadly."
             </p>
+
         </div>
 
         <div class="quote-box">
+
             <p>
-                "But by then, who can even understand her truly? all she is doing and her reasoning is mostly justified, then what are we supposed to do?"
+                "But by then, who can even understand her truly?
+                all she is doing and her reasoning is mostly justified,
+                then what are we supposed to do?"
             </p>
+
         </div>
 
         <div class="footer">
@@ -318,15 +360,22 @@ button:hover{
 
 <script>
 
+/* =========================
+   PASSWORD CHECK
+========================= */
+
 function checkPassword(){
 
-    const password = document.getElementById("passwordInput").value;
+    const password =
+    document.getElementById("passwordInput").value;
 
     if(password === "Love"){
 
-        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("loginScreen")
+        .style.display = "none";
 
-        document.getElementById("mainWebsite").style.display = "block";
+        document.getElementById("mainWebsite")
+        .style.display = "block";
 
         document.body.style.overflow = "auto";
 
@@ -334,25 +383,33 @@ function checkPassword(){
 
     else{
 
-        const error = document.getElementById("error");
+        const error =
+        document.getElementById("error");
 
         error.style.opacity = "1";
 
         setTimeout(()=>{
+
             error.style.opacity = "0";
+
         },2000);
 
     }
 
 }
 
-// ENTER KEY SUPPORT
+/* =========================
+   ENTER KEY SUPPORT
+========================= */
 
-document.getElementById("passwordInput")
+document
+.getElementById("passwordInput")
 .addEventListener("keypress", function(event){
 
     if(event.key === "Enter"){
+
         checkPassword();
+
     }
 
 });
@@ -361,25 +418,3 @@ document.getElementById("passwordInput")
 
 </body>
 </html>
-```
-
-Then:
-
-1. Open your repository
-2. Open `index.html`
-3. Press the pencil icon ✏️
-4. Delete everything
-5. Paste this entire code
-6. Press `Commit changes`
-
-Now your website will:
-
-* open with a password gate
-* show a smooth animated butterfly
-* only open if the password is:
-
-```txt
-Love
-```
-
-* then reveal your ARG homepage lore.
