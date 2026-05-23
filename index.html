@@ -1,16 +1,450 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Website</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>PROJECT LEPIDOPTERA</title>
+
+<style>
+/* =========================
+   GENERAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050505;
+    color:#e8e8e8;
+    font-family:Consolas, monospace;
+    overflow-x:hidden;
+    min-height:100vh;
+    cursor:crosshair;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.background{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    overflow:hidden;
+    z-index:-2;
+    background:
+    radial-gradient(circle at center, #101020 0%, #050505 70%);
+}
+
+.noise{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    opacity:0.05;
+    z-index:-1;
+    background-image:url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+}
+
+/* =========================
+   BUTTERFLIES
+========================= */
+
+.butterfly{
+    position:absolute;
+    color:#8a7dff;
+    font-size:24px;
+    animation:float linear infinite;
+    opacity:0.2;
+    user-select:none;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(110vh) translateX(0px) rotate(0deg);
+    }
+
+    to{
+        transform:translateY(-120vh) translateX(100px) rotate(360deg);
+    }
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    padding-top:100px;
+    padding-bottom:100px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.header h1{
+    font-size:4rem;
+    letter-spacing:8px;
+    color:#ffffff;
+    text-shadow:0 0 20px #8a7dff;
+    animation:flicker 5s infinite;
+}
+
+.header p{
+    margin-top:20px;
+    color:#9f9f9f;
+    font-size:1rem;
+    letter-spacing:2px;
+}
+
+@keyframes flicker{
+    0%,18%,22%,25%,53%,57%,100%{
+        opacity:1;
+    }
+
+    20%,24%,55%{
+        opacity:0.4;
+    }
+}
+
+/* =========================
+   WARNING BOX
+========================= */
+
+.warning{
+    border:1px solid #7d0000;
+    padding:25px;
+    background:rgba(80,0,0,0.1);
+    margin-bottom:40px;
+    box-shadow:0 0 20px rgba(255,0,0,0.1);
+}
+
+.warning h2{
+    color:#ff4d4d;
+    margin-bottom:10px;
+}
+
+/* =========================
+   LOGS
+========================= */
+
+.log{
+    border-left:3px solid #8a7dff;
+    padding:20px;
+    margin-bottom:25px;
+    background:rgba(255,255,255,0.03);
+    transition:0.3s;
+}
+
+.log:hover{
+    background:rgba(138,125,255,0.08);
+    transform:translateX(5px);
+}
+
+.log-title{
+    color:#b5abff;
+    margin-bottom:10px;
+    font-size:1.1rem;
+}
+
+.log-date{
+    color:#777;
+    font-size:0.8rem;
+    margin-bottom:10px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+button{
+    background:black;
+    color:#e8e8e8;
+    border:1px solid #666;
+    padding:12px 20px;
+    margin-top:20px;
+    cursor:pointer;
+    transition:0.3s;
+    font-family:Consolas, monospace;
+}
+
+button:hover{
+    background:#8a7dff;
+    color:black;
+    border-color:#8a7dff;
+}
+
+/* =========================
+   SECRET MESSAGE
+========================= */
+
+#secret{
+    margin-top:30px;
+    color:#ff4d4d;
+    opacity:0;
+    transition:1s;
+    letter-spacing:3px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    margin-top:100px;
+    text-align:center;
+    color:#555;
+    font-size:0.8rem;
+}
+
+/* =========================
+   GLITCH
+========================= */
+
+.glitch{
+    position:relative;
+    display:inline-block;
+}
+
+.glitch::before,
+.glitch::after{
+    content:attr(data-text);
+    position:absolute;
+    left:0;
+    width:100%;
+    overflow:hidden;
+}
+
+.glitch::before{
+    animation:glitch1 2s infinite;
+    color:red;
+    z-index:-1;
+}
+
+.glitch::after{
+    animation:glitch2 2s infinite;
+    color:blue;
+    z-index:-2;
+}
+
+@keyframes glitch1{
+    0%{clip-path:inset(0 0 80% 0);}
+    20%{clip-path:inset(20% 0 30% 0);}
+    40%{clip-path:inset(50% 0 10% 0);}
+    60%{clip-path:inset(10% 0 60% 0);}
+    80%{clip-path:inset(80% 0 5% 0);}
+    100%{clip-path:inset(0 0 80% 0);}
+}
+
+@keyframes glitch2{
+    0%{clip-path:inset(80% 0 0 0);}
+    20%{clip-path:inset(30% 0 20% 0);}
+    40%{clip-path:inset(10% 0 50% 0);}
+    60%{clip-path:inset(60% 0 10% 0);}
+    80%{clip-path:inset(5% 0 80% 0);}
+    100%{clip-path:inset(80% 0 0 0);}
+}
+</style>
 </head>
 
 <body>
-  <h1>Hello World</h1>
-  <p>This is my new website.</p>
 
-  <button onclick="showMessage()">Click Me</button>
+<div class="background"></div>
+<div class="noise"></div>
 
-  <script src="script.js"></script>
+<!-- FLOATING BUTTERFLIES -->
+<div class="butterfly" style="left:10%; animation-duration:18s;">🦋</div>
+<div class="butterfly" style="left:30%; animation-duration:22s;">🦋</div>
+<div class="butterfly" style="left:50%; animation-duration:17s;">🦋</div>
+<div class="butterfly" style="left:70%; animation-duration:25s;">🦋</div>
+<div class="butterfly" style="left:85%; animation-duration:19s;">🦋</div>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1 class="glitch" data-text="PROJECT LEPIDOPTERA">
+            PROJECT LEPIDOPTERA
+        </h1>
+
+        <p>
+            "Do not follow the butterflies after sunset."
+        </p>
+    </div>
+
+    <!-- WARNING -->
+    <div class="warning">
+        <h2>WARNING</h2>
+
+        <p>
+            Unauthorized access to Observation Archive 03 is prohibited.
+            Several visitors reported auditory hallucinations after prolonged exposure.
+        </p>
+    </div>
+
+    <!-- LOGS -->
+    <div class="log">
+        <div class="log-title">
+            Observation Log #001
+        </div>
+
+        <div class="log-date">
+            08.14.2004
+        </div>
+
+        <p>
+            The first butterfly appeared near the abandoned radio tower.
+            Witnesses claim it emitted light despite having burned wings.
+        </p>
+    </div>
+
+    <div class="log">
+        <div class="log-title">
+            Observation Log #006
+        </div>
+
+        <div class="log-date">
+            08.21.2004
+        </div>
+
+        <p>
+            Subjects exposed to the swarm began repeating identical phrases:
+            "It remembers us."
+        </p>
+    </div>
+
+    <div class="log">
+        <div class="log-title">
+            Observation Log #013
+        </div>
+
+        <div class="log-date">
+            09.02.2004
+        </div>
+
+        <p>
+            The butterfly specimens disappear from containers between
+            03:11 AM and 03:17 AM.
+        </p>
+    </div>
+
+    <!-- SECRET BUTTON -->
+    <button onclick="revealSecret()">
+        ACCESS RESTRICTED FILE
+    </button>
+
+    <div id="secret">
+        SUBJECT STATUS: UNCONTAINED
+        <br><br>
+        COORDINATE FRAGMENT:
+        48° 51' __" N
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        PROJECT LEPIDOPTERA © 2004
+        <br>
+        ARCHIVE NODE // STATUS: ACTIVE
+    </div>
+
+</div>
+
+<script>
+
+/* =========================
+   SECRET MESSAGE
+========================= */
+
+function revealSecret(){
+
+    const secret = document.getElementById("secret");
+
+    secret.style.opacity = "1";
+
+    document.body.style.animation = "shake 0.5s";
+
+    setTimeout(()=>{
+        document.body.style.animation = "";
+    },500);
+
+}
+
+/* =========================
+   RANDOM GLITCH TEXT
+========================= */
+
+const messages = [
+    "it sees you",
+    "don't trust the lights",
+    "the swarm is listening",
+    "you were followed",
+    "open the hidden page",
+    "subject escaped"
+];
+
+setInterval(()=>{
+
+    const random = messages[Math.floor(Math.random()*messages.length)];
+
+    console.log(random);
+
+},3000);
+
+/* =========================
+   PAGE FLICKER
+========================= */
+
+setInterval(()=>{
+
+    if(Math.random() > 0.93){
+
+        document.body.style.opacity = "0.92";
+
+        setTimeout(()=>{
+            document.body.style.opacity = "1";
+        },100);
+    }
+
+},500);
+
+/* =========================
+   SHAKE EFFECT
+========================= */
+
+const style = document.createElement('style');
+
+style.innerHTML = `
+@keyframes shake{
+    0%{transform:translate(0px);}
+    25%{transform:translate(2px,-2px);}
+    50%{transform:translate(-2px,2px);}
+    75%{transform:translate(2px,2px);}
+    100%{transform:translate(0px);}
+}
+`;
+
+document.head.appendChild(style);
+
+</script>
+
+<!--
+VGhlIGJ1dHRlcmZsaWVzIGFyZSBub3Qgd2hhdCB0aGV5IHNlZW0u
+-->
+
 </body>
 </html>
